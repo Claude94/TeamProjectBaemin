@@ -3,6 +3,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 @Setter @Getter
@@ -22,9 +24,20 @@ public class Restaurant {
     }
 
     public Restaurant(String restaurantName, String number, String menus, FoodCategory category) {
+        this();
         this.restaurantName = restaurantName;
         this.number = number;
         this.menus = menus;
         this.category = category;
     }
+
+/*    public Restaurant(ResultSet rs) throws SQLException {
+        this.restaurantNum = rs.getInt("res_num");
+        this.restaurantName = rs.getString("res_name");
+        this.number = rs.getString("tel_number");
+        this.menus = rs.getString("menus");
+        this.category = FoodCategory.valueOf(rs.getString("category"));
+    }*/
+
+
 }
