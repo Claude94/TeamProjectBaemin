@@ -43,8 +43,8 @@
 
             <div class="list-btn">
                 <a class="btn btn-basic" href="/board/modify?restaurantNum=${restaurant.restaurantNum}">글수정</a>
-                <a class="btn btn-basic" href="/board/list">목록 보기</a>
                 <a class="del-btn" href="/board/delete?restaurantNum=${restaurant.restaurantNum}">삭제</a>
+                <a class="btn btn-basic" href="/board/list">목록 보기</a>
             </div>
         </div>
 

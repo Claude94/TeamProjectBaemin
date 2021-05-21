@@ -1,5 +1,7 @@
 package com.spring.baemin.web.food.controller;
 
+import com.spring.baemin.web.common.paging.Criteria;
+import com.spring.baemin.web.common.paging.pageMaker;
 import com.spring.baemin.web.food.domain.ModifyRestaurant;
 import com.spring.baemin.web.food.domain.Restaurant;
 import com.spring.baemin.web.food.service.BoardService;
@@ -11,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -20,16 +23,21 @@ import java.util.List;
 @RequestMapping("/board")
 public class BoardController {
 
-    private final BoardService boardService ;
+    private final BoardService boardService;
+
     @Autowired
     public BoardController(BoardService boardService) {
         this.boardService = boardService;
     }
 
     @GetMapping("/list")
-    public String boardList(Model model) {
-        List<Restaurant> resList = boardService.findAll();
+    public String boardList(Criteria criteria, Model model) {
+        List<Restaurant> resList = boardService.findAll(criteria);
+//        for (Restaurant restaurant : resList) {
+//            System.out.println(restaurant.getCategory().getFoodName());
+//        }
         model.addAttribute("list", resList);
+        model.addAttribute("pageMaker", new pageMaker(criteria, boardService.getTotal()));
         return "/board/list";
     }
 
@@ -42,8 +50,12 @@ public class BoardController {
     //매점 등록 처리 요청
     @PostMapping("/write")
     public String write(Restaurant restaurant) {
-        boardService.create(restaurant);
-        return "redirect:list";
+        try {
+            boardService.create(restaurant);
+            return "redirect:/board/list";
+        } catch (Exception e) {
+            return "redirect:/board/write";
+        }
     }
 
     //입점 매점 목록 요청
@@ -78,13 +90,18 @@ public class BoardController {
     //매점 정보 수정 처리요청
     @PostMapping("/modify")
     public String modify(ModifyRestaurant modRestaurant) {
+
         // 원본데이터를 찾아서 수정데이터로 변경하는 로직(서비스에 넣어주는게 좋다)
         Restaurant restaurant = boardService.more(modRestaurant.getRestaurantNum());
         restaurant.setRestaurantName(modRestaurant.getRestaurantName());
         restaurant.setNumber(modRestaurant.getNumber());
         restaurant.setMenus(modRestaurant.getMenus());
         restaurant.setCategory(modRestaurant.getCategory());
-        boardService.rewrite(restaurant);
-        return "redirect:/board/content?restaurantNum=" + modRestaurant.getRestaurantNum();
+        try {
+            boardService.rewrite(restaurant);
+            return "redirect:/board/content?restaurantNum=" + modRestaurant.getRestaurantNum();
+        } catch (Exception e) {
+            return "redirect:/board/modify?restaurantNum=" + modRestaurant.getRestaurantNum();
+        }
     }
 }

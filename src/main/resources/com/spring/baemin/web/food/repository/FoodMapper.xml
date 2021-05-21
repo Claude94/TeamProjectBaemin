@@ -16,8 +16,27 @@
     </resultMap>
 
     <!-- 음식점 전체 조회 -->
+<!--    <select id="findAll" resultMap="boardMap">-->
+<!--        SELECT * FROM rmboard-->
+<!--    </select>-->
+
     <select id="findAll" resultMap="boardMap">
-        SELECT * FROM rmboard
+        <![CDATA[
+            SELECT
+                res_num, res_name, tel_number, menus, category
+            FROM
+                (SELECT /*+INDEX_DESC(board pk_board)*/
+                    rownum rn, res_num, res_name, tel_number, menus, category
+                FROM rmboard
+                WHERE rownum <= #{page} * #{amount})
+            WHERE rn > (#{page} - 1) * #{amount}
+        ]]>
+    </select>
+
+    <!--    총 게시물 수 조회-->
+    <select id="getTotalCount" resultType="int">
+        SELECT COUNT(*)
+        FROM rmboard
     </select>
 
     <!-- 음식점 추가 기능 -->
