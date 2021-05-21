@@ -1,5 +1,6 @@
 package com.spring.baemin.web.food.service;
 
+import com.spring.baemin.web.common.paging.Criteria;
 import com.spring.baemin.web.food.domain.Restaurant;
 import com.spring.baemin.web.food.repository.FoodMapper;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,7 @@ public class BoardService {
 
     public void create(Restaurant restaurant){
         foodMapper.create(restaurant);
-    };
+    }
 
     public void  remove(int restaurantNum) {
         foodMapper.remove(restaurantNum);
@@ -27,6 +28,14 @@ public class BoardService {
 
     public void  rewrite(Restaurant restaurant) {
         foodMapper.rewrite(restaurant);
+    }
+
+    public List<Restaurant> findAll(Criteria criteria){
+        return foodMapper.findAll(criteria);
+    }
+
+    public int getTotal() {
+        return foodMapper.getTotalCount();
     }
 
     public List<Restaurant> findAll() {
