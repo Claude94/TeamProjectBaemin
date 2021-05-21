@@ -13,8 +13,11 @@
 
 <body>
 
+    <div class="wrap">
+        <h1>입점 업체 리스트</h1>
 
-<div class="table-box">
+
+        <div class="table-box">
             <table class="table list-table">
                 <tbody>
                     <tr>
@@ -25,7 +28,7 @@
                         <th>카테고리</th>
                     </tr>
 
-                    
+
                     <c:if test="${list.size() <= 0}">
                         <tr>
                             <td class="no-article" colspan="5">게시물이 존재하지 않습니다.</td>
@@ -40,7 +43,9 @@
                                 <td>${restaurant.restaurantNum}</td>
                                 <td>${restaurant.restaurantName}</td>
                                 <td>${restaurant.number}</td>
-                                <td><a href="/board/content?restaurantNum=${restaurant.restaurantNum}">${restaurant.menus}</a></td>
+                                <td><a
+                                        href="/board/content?restaurantNum=${restaurant.restaurantNum}">${restaurant.menus}</a>
+                                </td>
                                 <td>${restaurant.category}</td>
                             </tr>
                         </c:forEach>
