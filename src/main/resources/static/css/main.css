@@ -335,3 +335,34 @@ table {
     border-radius: 5px;
     font-size: 14px;
 }
+
+.pagination {
+    width: 60%;
+    margin-top: 20px;
+    list-style: none;
+    /* display: flex; */
+    text-align: center;
+
+}
+
+.pagination>li {
+    justify-content: flex-end;
+    display: inline-block;
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
+.pagination>li>a {
+    text-decoration: none;
+    color: black;
+}
+
+.pagination>li>a:hover {
+    color: yellowgreen;
+}
+
+.pagination>li.active>a {
+    font-weight: bold;
+    color: orangered;
+    font-size: 1.1em;
+}

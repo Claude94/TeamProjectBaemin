@@ -42,11 +42,7 @@
 
     <!-- 음식점 메뉴 정보 수정 -->
     <update id="rewrite">
-        UPDATE rmboard
-        SET res_name = #{restaurantName},
-        tel_number = #{number},
-        menus = #{menus},
-        category = #{category}
+        UPDATE rmboard SET menus = #{menus}
         WHERE res_num = #{restaurantNum}
     </update>
 

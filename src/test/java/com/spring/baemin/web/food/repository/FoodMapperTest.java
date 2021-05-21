@@ -32,21 +32,21 @@ class FoodMapperTest {
 
     @Test
     void remove() {
-        mapper.remove(1);
+        mapper.remove(3);
     }
 
     @Test
     void more() {
         Restaurant restaurant;
-        restaurant = mapper.more(2);
+        restaurant = mapper.more(5);
         System.out.println(restaurant);
     }
 
     @Test
     void rewrite() {
         Restaurant restaurant = new Restaurant();
-        restaurant.setMenus("sdlfjsdlgvsdvscksdc");
-        restaurant.setRestaurantNum(2);
+        restaurant.setMenus("변경변경변경 블라블라블라~~~~~");
+        restaurant.setRestaurantNum(5);
         mapper.rewrite(restaurant);
     }
 
