@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -17,27 +20,40 @@ class FoodMapperTest {
     @Test
     void create() {
         Restaurant restaurant = new Restaurant();
-        restaurant.setRestaurantName("김밥나라");
-        restaurant.setNumber("010-2421-9850");
-        restaurant.setMenus("fkaus, rrrrr,s sdasdasd");
-        restaurant.setCategory(FoodCategory.KOREAN_FOOD);
+        restaurant.setRestaurantName("진짜루");
+        restaurant.setNumber("010-1112-3333");
+        restaurant.setMenus("ㄷㄹ허ㅜㅑㄴㅇㅍㄴ알");
+        restaurant.setCategory(FoodCategory.CHINA_FOOD);
 
         mapper.create(restaurant);
     }
 
     @Test
     void remove() {
+        mapper.remove(1);
     }
 
     @Test
     void more() {
+        Restaurant restaurant;
+        restaurant = mapper.more(2);
+        System.out.println(restaurant);
     }
 
     @Test
     void rewrite() {
+        Restaurant restaurant = new Restaurant();
+        restaurant.setMenus("sdlfjsdlgvsdvscksdc");
+        restaurant.setRestaurantNum(2);
+        mapper.rewrite(restaurant);
     }
 
     @Test
     void findAll() {
+        List<Restaurant> resList = mapper.findAll();
+        for (Restaurant restaurant : resList) {
+            System.out.println(restaurant);
+        }
+
     }
 }
