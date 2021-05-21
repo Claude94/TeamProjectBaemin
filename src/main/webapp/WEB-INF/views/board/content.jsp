@@ -14,7 +14,7 @@
 <body>
 
     <div class="wrap">
-        <h1>No.${restaurantNum} 매점 정보 상세보기</h1>
+        <h1>No.${restaurant.restaurantNum} 매점 정보 상세보기</h1>
 
         <div class="table-box">
 
@@ -22,12 +22,12 @@
             <table class="table view-table">
                 <tbody>
                     <tr>
-                        <th width="10%"># 매점명:</th>
+                        <th width="15%"># 매점명:</th>
                         <td>${restaurant.restaurantName}</td>
-                        <th width="10%"># 연락처:</th>
+                        <th width="15%"># 연락처:</th>
                         <td>${restaurant.number}</td>
-                        <th width="10%"># 카테고리:</th>
-                        <td>${restaurant.category}</td>
+                        <th width="15%"># 카테고리:</th>
+                        <td>${restaurant.category.foodName}</td>
                     </tr>
 
                     <tr>
@@ -43,8 +43,8 @@
 
             <div class="list-btn">
                 <a class="btn btn-basic" href="/board/modify?restaurantNum=${restaurant.restaurantNum}">글수정</a>
+                <a class="btn btn-basic" href="/board/delete?restaurantNum=${restaurant.restaurantNum}">삭제</a>
                 <a class="btn btn-basic" href="/board/list">목록 보기</a>
-                <a class="del-btn" href="/board/delete?restaurantNum=${restaurant.restaurantNum}">삭제</a>
             </div>
         </div>
 

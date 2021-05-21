@@ -21,13 +21,13 @@
                 <table class="table write-table">
                     <tbody>
                         <tr>
-                            <th width="10%"><label for="restaurantName"># 매점명:</label></th>
-                            <td width="10%"><input type="text" name="restaurantName"></td>
-                            <th width="10%"><label for="number"># 연락처:</label></th>
+                            <th width="15%"><label for="restaurantName"># 매점명:</label></th>
+                            <td><input type="text" name="restaurantName"></td>
+                            <th width="15%"><label for="number"># 연락처:</label></th>
                             <td><input type="text" name="number"></td>
-                            <th width="10%"><label for="category"># 카테고리:</label></th>
+                            <th width="15%"><label for="category"># 카테고리:</label></th>
                             <td>
-                                <select name="category">
+                                <select class="select-box" name="category">
                                     <option value="">--카테고리 선택--</option>
                                     <option value="KOREAN_FOOD">한식</option>
                                     <option value="CHINA_FOOD">중식</option>

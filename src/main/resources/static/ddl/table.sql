@@ -9,6 +9,13 @@ CREATE TABLE rmboard(
     CONSTRAINT pk_rmboard PRIMARY KEY (res_num)
 );
 
+--ALTER TABLE rmboard MODIFY(res_name VARCHAR2(50));
+--ALTER TABLE rmboard MODIFY(tel_number VARCHAR2(50));
+--ALTER TABLE rmboard ADD(category VARCHAR2(20) NOT NULL);
+
+
 SELECT
     *
 FROM rmboard;
+
+TRUNCATE TABLE rmboard;

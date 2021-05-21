@@ -42,6 +42,7 @@ public class BoardController {
     //매점 등록 처리 요청
     @PostMapping("/write")
     public String write(Restaurant restaurant) {
+        log.info("restaurant: " + restaurant);
         boardService.create(restaurant);
         return "redirect:list";
     }
