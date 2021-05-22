@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Controller
@@ -32,7 +33,12 @@ public class BoardController {
 
     @GetMapping("/list")
     public String boardList(Criteria criteria, Model model) {
-        List<Restaurant> resList = boardService.findAll(criteria);
+        List<Restaurant> resList = null;
+        try {
+            resList = boardService.findAll(criteria);
+        } catch (Exception e) {
+            return "board/list";
+        }
 //        for (Restaurant restaurant : resList) {
 //            System.out.println(restaurant.getCategory().getFoodName());
 //        }
@@ -49,13 +55,13 @@ public class BoardController {
 
     //매점 등록 처리 요청
     @PostMapping("/write")
-    public String write(Restaurant restaurant) {
+    public String write(Restaurant restaurant, Model model) {
         try {
             boardService.create(restaurant);
-            return "redirect:/board/list";
         } catch (Exception e) {
-            return "redirect:/board/write";
+            return "/board/write";
         }
+        return "redirect:/board/list";
     }
 
     //입점 매점 목록 요청

@@ -25,10 +25,11 @@
             SELECT
                 res_num, res_name, tel_number, menus, category
             FROM
-                (SELECT /*+INDEX_DESC(board pk_board)*/
+                (SELECT
                     rownum rn, res_num, res_name, tel_number, menus, category
                 FROM rmboard
-                WHERE rownum <= #{page} * #{amount})
+                WHERE rownum <= #{page} * #{amount}
+                ORDER BY res_num DESC)
             WHERE rn > (#{page} - 1) * #{amount}
         ]]>
     </select>

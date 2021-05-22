@@ -6,6 +6,7 @@ import com.spring.baemin.web.food.repository.FoodMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -14,7 +15,7 @@ public class BoardService {
 
     private final FoodMapper foodMapper;
 
-    public void create(Restaurant restaurant) throws Exception{
+    public void create(Restaurant restaurant) throws Exception {
         foodMapper.create(restaurant);
     };
 
@@ -23,10 +24,12 @@ public class BoardService {
     }
 
     public Restaurant more(int restaurantNum){
-        return foodMapper.more(restaurantNum);
+
+            return foodMapper.more(restaurantNum);
+
     }
 
-    public void rewrite(Restaurant restaurant) throws Exception{
+    public void rewrite(Restaurant restaurant){
         foodMapper.rewrite(restaurant);
     }
 
@@ -34,7 +37,7 @@ public class BoardService {
 //        return foodMapper.findAll();
 //    }
 
-    public List<Restaurant> findAll(Criteria criteria) {
+    public List<Restaurant> findAll(Criteria criteria) throws Exception {
         return foodMapper.findAll(criteria);
     }
 

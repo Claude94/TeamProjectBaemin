@@ -85,7 +85,20 @@
 
             console.log('tr clicked!', e.target);
             location.href = '/board/content?restaurantNum=' + e.target.parentNode.dataset.num;
+
         });
+
+        function appendPageActive(curPageNum) {
+            const $ul = document.querySelector('.pagination');
+            for (let $li of [...$ul.children]) {
+                if ($li.dataset.page === curPageNum) {
+                    $li.classList.add('active');
+                }
+            }
+        }
+        (function () {
+            appendPageActive('${pageMaker.criteria.page}');
+        }());
     </script>
 
 

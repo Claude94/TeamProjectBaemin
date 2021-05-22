@@ -358,7 +358,14 @@ table {
     text-decoration: none;
     color: black;
 }
+
 .pagination > li > a:hover {
     color: yellowgreen;
+}
+
+.pagination > li.active > a {
+    font-weight: bold;
+    color: orangered;
+    font-size: 1.1em;
 }
 
