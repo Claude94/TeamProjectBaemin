@@ -3,7 +3,8 @@ package com.spring.baemin.web.common.paging;
 import lombok.Getter;
 import lombok.ToString;
 
-@Getter @ToString
+@Getter
+@ToString
 public class Criteria {
 
     private int page; //페이지 넘버
@@ -18,6 +19,7 @@ public class Criteria {
         this.amount = amount;
     }
 
+    // 파라미터 조작 방지용 setter
     public void setPage(int page) {
         if (page <= 0) {
             this.page = 1;
