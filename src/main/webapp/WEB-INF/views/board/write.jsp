@@ -111,29 +111,7 @@
                             </div>
                         </div>
 
-                        <!-- pagination -->
-                        <nav aria-label="Page navigation">
-                            <ul class="pagination justify-content-center">
-                                <c:if test="${pageMaker.prev}">
-                                    <li class="page-item">
-                                        <a class="page-link"
-                                            href="/board/list?page=${pageMaker.beginPage - 1}">[prev]</a>
-                                    </li>
-                                </c:if>
-
-                                <c:forEach var="i" begin="${pageMaker.beginPage}" end="${pageMaker.endPage}" step="1">
-                                    <li class="page-item" data-page="${i}"><a class="page-link"
-                                            href="/board/list?page=${i}">[${i}]</a></li>
-                                </c:forEach>
-
-                                <c:if test="${pageMaker.next}">
-                                    <li class="page-item">
-                                        <a class="page-link" href="/board/list?page=${pageMaker.endPage + 1}">[next]</a>
-                                    </li>
-                                </c:if>
-                            </ul>
-                        </nav>
-                        <!-- pagination end -->
+                        
                     </div>
                 </section>
             </div>
