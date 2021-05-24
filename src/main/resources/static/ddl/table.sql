@@ -14,8 +14,6 @@ CREATE TABLE rmboard(
 --ALTER TABLE rmboard ADD(category VARCHAR2(20) NOT NULL);
 
 
-SELECT
-    *
-FROM rmboard;
+SELECT * FROM rmboard ORDER BY res_num;
 
-TRUNCATE TABLE rmboard;
+--TRUNCATE TABLE rmboard;

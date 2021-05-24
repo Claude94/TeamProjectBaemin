@@ -1,5 +1,7 @@
 package com.spring.baemin.web.food.controller;
 
+import com.spring.baemin.web.common.paging.Criteria;
+import com.spring.baemin.web.common.paging.PageMaker;
 import com.spring.baemin.web.food.domain.ModifyRestaurant;
 import com.spring.baemin.web.food.domain.Restaurant;
 import com.spring.baemin.web.food.service.BoardService;
@@ -26,10 +28,20 @@ public class BoardController {
         this.boardService = boardService;
     }
 
-    @GetMapping("/list")
+    //입점 매점 목록 요청
+    // 1. 페이징 없는 버전
+    /*@GetMapping("/list")
     public String boardList(Model model) {
         List<Restaurant> resList = boardService.findAll();
         model.addAttribute("list", resList);
+        return "/board/list";
+    }*/
+    // 2. 페이징 추가 버전
+    @GetMapping("/list")
+    public String list(Criteria criteria, Model model) {
+        model.addAttribute("list", boardService.findAll(criteria));
+        // 페이지 정보를 만들어서 jsp 에게 보내기
+        model.addAttribute("pageMaker", new PageMaker(criteria, boardService.getTotal()));
         return "/board/list";
     }
 
@@ -42,23 +54,9 @@ public class BoardController {
     //매점 등록 처리 요청
     @PostMapping("/write")
     public String write(Restaurant restaurant) {
-        log.info("restaurant: " + restaurant);
+//        log.info("restaurant: " + restaurant);
         boardService.create(restaurant);
         return "redirect:list";
-    }
-
-    //입점 매점 목록 요청
-    /*@GetMapping("/list")
-    public String list(Model model) {
-        model.addAttribute("list", boardService.findAll());
-        return "list";
-    }*/
-
-    //등록 매점 삭제 요청
-    @GetMapping("/delete")
-    public String delete(int restaurantNum) {
-        boardService.remove(restaurantNum);
-        return "redirect:/board/list";
     }
 
     //매점 정보 상세보기 요청
@@ -88,4 +86,12 @@ public class BoardController {
         boardService.rewrite(restaurant);
         return "redirect:/board/content?restaurantNum=" + modRestaurant.getRestaurantNum();
     }
+
+    //등록 매점 삭제 요청
+    @GetMapping("/delete")
+    public String delete(int restaurantNum) {
+        boardService.remove(restaurantNum);
+        return "redirect:/board/list";
+    }
+
 }

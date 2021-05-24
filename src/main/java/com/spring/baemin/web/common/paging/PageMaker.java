@@ -6,20 +6,24 @@ import lombok.ToString;
 @Getter @ToString
 public class PageMaker {
 
-    private static final int PAGE_COUNT = 10;
+    // 한 화면에 배치할 페이지 넘버 수
+    private static final int PAGE_COUNT = 15;
 
-    private int beginPage;
-    private int endPage;
-    private boolean prev, next;
-    private Criteria criteria;
-    private int totalCount;
+    private int beginPage; // 시작페이지 번호
+    private int endPage; // 끝페이지 번호
+    private boolean prev, next; // 이전, 다음 활성화 여부
+
+    private Criteria criteria; // 현재 요청 페이지 정보
+    private int totalCount; // 현재 총 게시물 수
 
     public PageMaker(Criteria criteria, int totalCount) {
         this.criteria = criteria;
         this.totalCount = totalCount;
 
+        // 끝 페이지 계산
         this.endPage = (int)Math.ceil((double)criteria.getPage() / PAGE_COUNT) * PAGE_COUNT;
 
+        // 시작 페이지 계산
         this.beginPage = endPage - PAGE_COUNT + 1;
 
         /*
@@ -31,12 +35,15 @@ public class PageMaker {
          */
         int realEnd = (int)Math.ceil((double)totalCount / criteria.getAmount());
 
-        if (realEnd <= endPage) {
+        // 보정은 마지막 페이지 구간에서만 일어나야 함.
+        if(realEnd <= endPage) {
             this.endPage = realEnd;
         }
 
+        // 이전 버튼 활성화 여부
         this.prev = this.beginPage > 1;
 
+        // 다음 버튼 활성화 여부
         this.next = this.endPage < realEnd;
     }
 
