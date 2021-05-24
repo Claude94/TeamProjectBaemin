@@ -25,8 +25,7 @@
             <div id="header-wrap">
                 <div class="container clearfix">
                     <div id="logo">
-                        <a href="/index.html" class="standard-logo"><img
-                                src="http://www.kittisec.co.kr/design/images/header/logo.png" alt="Logo"></a>
+                        <a href="/index.html" class="standard-logo"><img src="../images/logo.png" alt="Logo"></a>
                     </div>
                 </div>
             </div>
